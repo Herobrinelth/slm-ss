@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="generator" content="Hugo 0.88.1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href=""https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+	<link rel="stylesheet" href="css/custom.css">
+	<link rel="stylesheet" href="css/normalize.css">
+
+	<title>SplitMeanFlow</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+
+<body data-new-gr-c-s-check-loaded="14.1091.0" data-gr-ext-installed="">
+
+<div class="container" >
+<header role="banner">
+</header>
+<main role="main">
+<article itemscope itemtype="https://schema.org/BlogPosting">
+
+<div class="container pt-5 mt-5 shadow-lg p-5 mb-5 bg-white rounded">
+	<div class="text-center">
+	<h2>GSLM-SS: </h2>
+      <h3>Generative Speech Language Model for Speech Separation</h3>
+		<!-- [<a href="https://arxiv.org/abs/2303.03926">Paper</a>] -->
+		<!-- [<a href="https://arxiv.org/abs/2306.02982">Paper</a>] -->
+
+        <p class="fst-italic mb-0">
+        	<br>
+			Tianhua Li<sup>1</sup>, Chenda Li<sup>1</sup>, Wei Wang<sup>1</sup>, Jianqing Gao<sup>2</sup>, Yanmin Qian<sup>1</sup>
+      <p></p>
+        </p>
+        <p><b><sup>1</sup>Auditory Cognition and Computational Acoustics Lab<br>
+			MoE Key Lab of Artificial Intelligence, AI Institute<br>
+			School of Computer Science, Shanghai Jiao Tong University, Shanghai, China<br>
+			<sup>2</sup>AI research Institute, iFLYTEK Company Limited, Hefei Anhui, China</b></p>
+	</div>
+	<p><b>Abstract.</b> Speech separation (SS) has advanced significantly with neural network-based methods, improving signal-level performance. However, these methods often struggle with maintaining linguistic consistency in the separated signals, which can affect the performance of downstream tasks such as speech recognition.
+		In this work, we propose a novel approach that applies <b>generative speech language models</b> to SS, aiming to improve the linguistic coherence of the separated signals. We frame SS as <b>discrete multi-codebook sequence generation</b>, leveraging Encoder-Decoder models to map quantized speech mixtures to target tokens. In addition to the <b>autoregressive</b> modeling strategy, we apply a <b>non-autoregressive</b> model to improve decoding efficiency for residual tokens. Experimental results on LibriMix dataset demonstrate that our approach shows significantly better preservation of linguistic consistency across a variety of downstream tasks compared to existing approaches. </p>
+
+	
+</div>
+
+
+
+<div class="container pt-5 mt-5 shadow-lg p-5 mb-5 bg-white rounded">
+	<h2 id="CosyVoice2" style="text-align: center;">Demo audios from different models</h2>
+		<div class="table-responsive pt-3">
+			<table class="table table-hover pt-2">
+				<thead>
+				<tr>
+				<th style="vertical-align : middle;text-align: center">Groundtruth </th>
+				<th style="vertical-align : middle;text-align: center">Encodec-32</th>
+				<th style="vertical-align : middle;text-align: center">Encodec-8</th>
+				<th style="vertical-align : middle;text-align: center">BSRNN</th>
+				<th style="vertical-align : middle;text-align: center">Sepformer</th>
+				<th style="vertical-align : middle;text-align: center">GSLM-SS(Ours)</th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 190px;"><source src="audio_3s\gt\121-121726-0002_8455-210777-0041_2.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+						<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 190px;"><source src="audio_3s\encodec32\121-121726-0002_8455-210777-0041_2.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+						<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 190px;"><source src="audio_3s\encodec8\121-121726-0002_8455-210777-0041_2.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+						<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 190px;"><source src="audio_3s\bsrnn\121-121726-0002_8455-210777-0041_2.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+						<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 190px;"><source src="audio_3s\sepformer\121-121726-0002_8455-210777-0041_2.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+						<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 190px;"><source src="audio_3s\ours\121-121726-0002_8455-210777-0041_2.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+					</tr>
+					<tr>
+						<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 190px;"><source src="audio_3s\gt\237-126133-0006_1221-135767-0005_2.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+						<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 190px;"><source src="audio_3s\encodec32\237-126133-0006_1221-135767-0005_2.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+						<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 190px;"><source src="audio_3s\encodec8\237-126133-0006_1221-135767-0005_2.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+						<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 190px;"><source src="audio_3s\bsrnn\237-126133-0006_1221-135767-0005_2.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+						<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 190px;"><source src="audio_3s\sepformer\237-126133-0006_1221-135767-0005_2.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+						<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 190px;"><source src="audio_3s\ours\237-126133-0006_1221-135767-0005_2.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+					</tr>
+					<tr>
+						<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 190px;"><source src="audio_3s\gt\1089-134686-0008_8230-279154-0012_1.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+						<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 190px;"><source src="audio_3s\encodec32\1089-134686-0008_8230-279154-0012_1.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+						<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 190px;"><source src="audio_3s\encodec8\1089-134686-0008_8230-279154-0012_1.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+						<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 190px;"><source src="audio_3s\bsrnn\1089-134686-0008_8230-279154-0012_1.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+						<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 190px;"><source src="audio_3s\sepformer\1089-134686-0008_8230-279154-0012_1.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+						<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 190px;"><source src="audio_3s\ours\1089-134686-0008_8230-279154-0012_1.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+					</tr>
+					<tr>
+						<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 190px;"><source src="audio_3s\gt\1580-141083-0032_61-70968-0033_2.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+						<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 190px;"><source src="audio_3s\encodec32\1580-141083-0032_61-70968-0033_2.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+						<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 190px;"><source src="audio_3s\encodec8\1580-141083-0032_61-70968-0033_2.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+						<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 190px;"><source src="audio_3s\bsrnn\1580-141083-0032_61-70968-0033_2.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+						<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 190px;"><source src="audio_3s\sepformer\1580-141083-0032_61-70968-0033_2.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+						<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 190px;"><source src="audio_3s\ours\1580-141083-0032_61-70968-0033_2.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+					</tr>
+					<tr>
+						<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 190px;"><source src="audio_3s\gt\2830-3980-0018_260-123286-0006_2.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+						<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 190px;"><source src="audio_3s\encodec32\2830-3980-0018_260-123286-0006_2.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+						<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 190px;"><source src="audio_3s\encodec8\2830-3980-0018_260-123286-0006_2.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+						<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 190px;"><source src="audio_3s\bsrnn\2830-3980-0018_260-123286-0006_2.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+						<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 190px;"><source src="audio_3s\sepformer\2830-3980-0018_260-123286-0006_2.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+						<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 190px;"><source src="audio_3s\ours\2830-3980-0018_260-123286-0006_2.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	<br>
+
+</div>
+
+
+
+</div>
+
+
+
+</article>
+</main>
+</div>
+
+</body>
+</html>
